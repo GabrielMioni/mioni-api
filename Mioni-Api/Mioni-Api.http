@@ -1,0 +1,6 @@
+@Mioni_Api_HostAddress = http://localhost:5232
+
+GET {{Mioni_Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
