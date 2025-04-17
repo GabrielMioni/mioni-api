@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Mioni_Api.Data;
 using Mioni_Api.GraphQL.Mutations;
 using Mioni_Api.GraphQL.Queries;
+using Mioni_Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ProjectService>();
 
 builder.Services
     .AddGraphQLServer()
