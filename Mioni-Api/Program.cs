@@ -24,8 +24,8 @@ builder.Services
     .AddTypeExtension<ProjectQueries>()
     .AddMutationType(d => d.Name("Mutation"))
     .AddTypeExtension<ProjectMutations>()
-    .AddProjections()
     .AddFiltering()
+    .AddProjections()
     .AddSorting();
 
 var app = builder.Build();
