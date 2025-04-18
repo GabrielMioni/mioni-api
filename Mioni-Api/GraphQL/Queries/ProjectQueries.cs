@@ -1,5 +1,5 @@
 ﻿using Mioni_Api.Models;
-using System.Collections.Generic;
+using Mioni_Api.Services;
 
 namespace Mioni_Api.GraphQL.Queries
 {
@@ -10,26 +10,14 @@ namespace Mioni_Api.GraphQL.Queries
         {
             return "Hello from ProjectQueries!";
         }
-        public IEnumerable<Project> GetProjects()
+
+        [UsePaging(IncludeTotalCount = true)]
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Project> GetProjects([Service] ProjectService service)
         {
-            return new List<Project>
-            {
-                new Project {
-                    Id = 1,
-                    Title = "Project 1",
-                    Description = "Description of Project 1",
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                },
-                new Project
-                {
-                    Id = 2,
-                    Title = "Project 2",
-                    Description = "Description of Project 2",
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                }
-            };
+            return service.GetAll();
         }
 
     }
