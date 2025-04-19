@@ -1,4 +1,5 @@
-﻿using Mioni_Api.GraphQL.Inputs;
+﻿using Microsoft.EntityFrameworkCore;
+using Mioni_Api.GraphQL.Inputs;
 using Mioni_Api.Models;
 using Mioni_Api.Services;
 
@@ -7,7 +8,13 @@ namespace Mioni_Api.GraphQL.Mutations
     [ExtendObjectType("Mutation")]
     public class ProjectMutations
     {
-        public async Task<Project> AddProject([Service] ProjectService service, ProjectInput projectInput)
+        private readonly ProjectService _projectService;
+
+        public ProjectMutations(ProjectService service) {
+            _projectService = service;
+        }
+
+        public async Task<Project> AddProject(ProjectInput projectInput)
         {
             if (projectInput == null)
             {
@@ -21,9 +28,14 @@ namespace Mioni_Api.GraphQL.Mutations
                 CreatedAt = DateTime.UtcNow,
             };
 
-            Project savedProject = await service.CreateAsync(newProject);
+            Project savedProject = await _projectService.CreateAsync(newProject);
             
             return newProject;
         }
+
+        //public async Task<Project> UpdateProject([Service] ProjectService service, ProjectInput projectInput)
+        //{
+
+        //}
     }
 }
