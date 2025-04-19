@@ -1,41 +1,28 @@
 ﻿using Mioni_Api.GraphQL.Inputs;
 using Mioni_Api.Models;
+using Mioni_Api.Services;
 
 namespace Mioni_Api.GraphQL.Mutations
 {
     [ExtendObjectType("Mutation")]
     public class ProjectMutations
     {
-        private static List<Project> _projects = new List<Project>()
+        public async Task<Project> AddProject([Service] ProjectService service, ProjectInput projectInput)
         {
-            new Project
+            if (projectInput == null)
             {
-                Id = 1,
-                Title = "Project 1",
-                Description = "Description of Project 1",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            },
-            new Project
-            {
-                Id = 2,
-                Title = "Project 2",
-                Description = "Description of Project 2",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                throw new ArgumentNullException(nameof(projectInput));
             }
-        };
 
-        public Project AddProject(ProjectInput input)
-        {
             var newProject = new Project
             {
-                Id = _projects.Max(p => p.Id) + 1,
-                Title = input.Title,
-                Description = input.Description,
+                Title = projectInput.Title,
+                Description = projectInput.Description,
                 CreatedAt = DateTime.UtcNow,
             };
-            _projects.Add(newProject);
+
+            Project savedProject = await service.CreateAsync(newProject);
+            
             return newProject;
         }
     }
