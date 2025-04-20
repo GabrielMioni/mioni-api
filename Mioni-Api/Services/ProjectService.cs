@@ -1,5 +1,6 @@
 ﻿using Mioni_Api.Data;
 using Mioni_Api.Models;
+using KeyNotFoundException = System.Collections.Generic.KeyNotFoundException;
 
 namespace Mioni_Api.Services
 {
@@ -26,19 +27,34 @@ namespace Mioni_Api.Services
             return project;
         }
 
-        public async Task<Project?> UpdateAsync(int id, Project updatedProject)
+        public async Task<Project> UpdateProjectAsync(int id, string? newTitle, string? newDescription, bool titleProvided, bool descriptionProvided)
         {
-            var project = await GetByIdAsync(id);
-            if (project == null)
-                return null;
+            var existingProject = await _context.Projects.FindAsync(id);
 
-            project.Title = updatedProject.Title;
-            project.Description = updatedProject.Description;
-            project.UpdatedAt = DateTime.UtcNow;
-            _context.Projects.Update(project);
+            if (existingProject == null)
+            {
+                throw new KeyNotFoundException($"Project with ID {id} not found");
+            }
 
-            await _context.SaveChangesAsync();
-            return project;
+            bool changed = false;
+            if (titleProvided)
+            {
+                existingProject.Title = newTitle;
+                changed = true;
+            }
+            if (descriptionProvided)
+            {
+                existingProject.Description = newDescription;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                existingProject.UpdatedAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+            }
+
+            return existingProject;
         }
     }
 }
