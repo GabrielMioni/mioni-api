@@ -10,23 +10,26 @@ namespace Mioni_Api.GraphQL.Mutations
     {
         public async Task<AddProjectPayload> AddProject(ProjectInput projectInput, [Service] ProjectService service)
         {
-            if (projectInput == null)
+            try
             {
-                return new AddProjectPayload(null, new List<UserError> {
-                    new UserError("Project input cannot be null.", "NULL_INPUT")
+                var newProject = new Project
+                {
+                    Title = projectInput.Title,
+                    Description = projectInput.Description,
+                    CreatedAt = DateTime.UtcNow,
+                };
+
+                Project addedProject = await service.CreateAsync(newProject);
+
+                return new AddProjectPayload(addedProject);
+            }
+            catch (Exception ex)
+            {
+                return new AddProjectPayload(null, new List<UserError>
+                {
+                    new UserError("An unexpected error occurred while adding the project.", "ADD_FAILED")
                 });
             }
-
-            var newProject = new Project
-            {
-                Title = projectInput.Title,
-                Description = projectInput.Description,
-                CreatedAt = DateTime.UtcNow,
-            };
-
-            Project addedProject = await service.CreateAsync(newProject);
-            
-            return new AddProjectPayload(addedProject);
         }
 
         public async Task<DeleteProjectPayload> DeleteProject(int id, [Service] ProjectService service)
