@@ -29,6 +29,27 @@ namespace Mioni_Api.GraphQL.Mutations
             return new AddProjectPayload(addedProject);
         }
 
+        public async Task<DeleteProjectPayload> DeleteProject(int id, [Service] ProjectService service)
+        {
+            try
+            {
+                Project deletedProject = await service.DeleteAndReturnProjectAsync(id);
+                return new DeleteProjectPayload(deletedProject);
+            }
+            catch (System.Collections.Generic.KeyNotFoundException ex)
+            {
+                return new DeleteProjectPayload(null, new List<UserError> {
+                    new UserError(ex.Message, "PROJECT_NOT_FOUND")
+                });
+            }
+            catch (Exception ex)
+            {
+                return new DeleteProjectPayload(null, new List<UserError>{
+                    new UserError("An unexpected error occurred while deleting the project.", "DELETE_FAILED")
+                });
+            }
+        }
+
         public async Task<UpdateProjectPayload> UpdateProject(UpdateProjectInput input, [Service] ProjectService service)
         {
             try
