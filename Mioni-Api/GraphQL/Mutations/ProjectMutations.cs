@@ -8,11 +8,13 @@ namespace Mioni_Api.GraphQL.Mutations
     [ExtendObjectType("Mutation")]
     public class ProjectMutations
     {
-        public async Task<Project> AddProject(ProjectInput projectInput, [Service] ProjectService service)
+        public async Task<AddProjectPayload> AddProject(ProjectInput projectInput, [Service] ProjectService service)
         {
             if (projectInput == null)
             {
-                throw new ArgumentNullException(nameof(projectInput));
+                return new AddProjectPayload(null, new List<UserError> {
+                    new UserError("Project input cannot be null.", "NULL_INPUT")
+                });
             }
 
             var newProject = new Project
@@ -22,9 +24,9 @@ namespace Mioni_Api.GraphQL.Mutations
                 CreatedAt = DateTime.UtcNow,
             };
 
-            Project savedProject = await service.CreateAsync(newProject);
+            Project addedProject = await service.CreateAsync(newProject);
             
-            return newProject;
+            return new AddProjectPayload(addedProject);
         }
 
         public async Task<UpdateProjectPayload> UpdateProject(UpdateProjectInput input, [Service] ProjectService service)
