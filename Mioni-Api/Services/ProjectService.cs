@@ -27,6 +27,21 @@ namespace Mioni_Api.Services
             return project;
         }
 
+        public async Task<Project> DeleteAndReturnProjectAsync(int id)
+        {
+            var project = await _context.Projects.FindAsync(id);
+
+            if (project == null)
+            {
+                throw new KeyNotFoundException($"Project with ID {id} not found");
+            }
+
+            _context.Projects.Remove(project);
+            await _context.SaveChangesAsync();
+
+            return project;
+        }
+
         public async Task<Project> UpdateProjectAsync(int id, string? newTitle, string? newDescription, bool titleProvided, bool descriptionProvided)
         {
             var existingProject = await _context.Projects.FindAsync(id);
