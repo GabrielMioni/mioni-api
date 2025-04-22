@@ -20,8 +20,6 @@ namespace Mioni_Api.Services
 
         public async Task<Project> CreateAsync(Project project)
         {
-            project.CreatedAt = DateTime.UtcNow;
-            project.UpdatedAt = DateTime.UtcNow;
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
             return project;
