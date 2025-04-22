@@ -53,6 +53,29 @@ namespace Mioni_Api.GraphQL.Mutations
             }
         }
 
+        public async Task<RestoreProjectPayload> RestoreProject(RestoreProjectInput input, [Service] ProjectService service)
+        {
+            try
+            {
+                var restoredProject = new Project
+                {
+                    Title = input.Title,
+                    Description = input.Description,
+                    CreatedAt = input.CreatedAt,
+                    UpdatedAt = input.UpdatedAt
+                };
+                Project addedProject = await service.CreateAsync(restoredProject);
+                return new RestoreProjectPayload(addedProject);
+            }
+            catch (Exception ex)
+            {
+                return new RestoreProjectPayload(null, new List<UserError>
+                {
+                    new UserError("An unexpected error occurred while restoring the project.", "RESTORE_FAILED")
+                });
+            }
+        }
+
         public async Task<UpdateProjectPayload> UpdateProject(UpdateProjectInput input, [Service] ProjectService service)
         {
             try
