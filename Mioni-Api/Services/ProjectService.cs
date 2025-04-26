@@ -1,5 +1,5 @@
 ﻿using Mioni_Api.Data;
-using Mioni_Api.Models;
+using Mioni_Api.Domain.Entities;
 using KeyNotFoundException = System.Collections.Generic.KeyNotFoundException;
 
 namespace Mioni_Api.Services

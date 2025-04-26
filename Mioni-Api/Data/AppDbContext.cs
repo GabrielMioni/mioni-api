@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using Mioni_Api.Models;
+using Mioni_Api.Domain.Entities;
 
 namespace Mioni_Api.Data
 {

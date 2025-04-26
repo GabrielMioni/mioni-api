@@ -1,4 +1,4 @@
-﻿using Mioni_Api.Models;
+﻿using Mioni_Api.Domain.Entities;
 
 namespace Mioni_Api.GraphQL.Payloads
 {

@@ -1,4 +1,4 @@
-﻿namespace Mioni_Api.Models
+﻿namespace Mioni_Api.Domain.Entities
 {
     public class Project
     {

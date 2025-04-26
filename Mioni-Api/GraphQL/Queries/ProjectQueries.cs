@@ -1,4 +1,4 @@
-﻿using Mioni_Api.Models;
+﻿using Mioni_Api.Domain.Entities;
 using Mioni_Api.Services;
 
 namespace Mioni_Api.GraphQL.Queries

@@ -1,6 +1,6 @@
-﻿using Mioni_Api.GraphQL.Inputs;
+﻿using Mioni_Api.Domain.Entities;
+using Mioni_Api.GraphQL.Inputs;
 using Mioni_Api.GraphQL.Payloads;
-using Mioni_Api.Models;
 using Mioni_Api.Services;
 
 namespace Mioni_Api.GraphQL.Mutations
