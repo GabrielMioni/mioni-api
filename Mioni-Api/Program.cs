@@ -3,6 +3,7 @@ using Mioni_Api.Data;
 using Mioni_Api.GraphQL.Mutations;
 using Mioni_Api.GraphQL.Queries;
 using Mioni_Api.Services;
+using Mioni_Api.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,7 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString));
 
-builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 builder.Services
     .AddGraphQLServer()

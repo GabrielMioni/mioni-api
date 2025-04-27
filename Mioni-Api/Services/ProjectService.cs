@@ -1,10 +1,11 @@
 ﻿using Mioni_Api.Data;
 using Mioni_Api.Domain.Entities;
+using Mioni_Api.Services.Interfaces;
 using KeyNotFoundException = System.Collections.Generic.KeyNotFoundException;
 
 namespace Mioni_Api.Services
 {
-    public class ProjectService
+    public class ProjectService : IProjectService
     {
         private readonly AppDbContext _context;
 

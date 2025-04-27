@@ -1,5 +1,6 @@
 ﻿using Mioni_Api.Domain.Entities;
 using Mioni_Api.Services;
+using Mioni_Api.Services.Interfaces;
 
 namespace Mioni_Api.GraphQL.Queries
 {
@@ -15,7 +16,7 @@ namespace Mioni_Api.GraphQL.Queries
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public IQueryable<Project> GetProjects([Service] ProjectService service)
+        public IQueryable<Project> GetProjects([Service] IProjectService service)
         {
             return service.GetAll();
         }

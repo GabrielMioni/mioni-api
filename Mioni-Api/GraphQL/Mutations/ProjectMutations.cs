@@ -2,13 +2,14 @@
 using Mioni_Api.GraphQL.Inputs;
 using Mioni_Api.GraphQL.Payloads;
 using Mioni_Api.Services;
+using Mioni_Api.Services.Interfaces;
 
 namespace Mioni_Api.GraphQL.Mutations
 {
     [ExtendObjectType("Mutation")]
     public class ProjectMutations
     {
-        public async Task<AddProjectPayload> AddProject(ProjectInput projectInput, [Service] ProjectService service)
+        public async Task<AddProjectPayload> AddProject(ProjectInput projectInput, [Service] IProjectService service)
         {
             try
             {
@@ -32,7 +33,7 @@ namespace Mioni_Api.GraphQL.Mutations
             }
         }
 
-        public async Task<DeleteProjectPayload> DeleteProject(int id, [Service] ProjectService service)
+        public async Task<DeleteProjectPayload> DeleteProject(int id, [Service] IProjectService service)
         {
             try
             {
@@ -53,7 +54,7 @@ namespace Mioni_Api.GraphQL.Mutations
             }
         }
 
-        public async Task<RestoreProjectPayload> RestoreProject(RestoreProjectInput input, [Service] ProjectService service)
+        public async Task<RestoreProjectPayload> RestoreProject(RestoreProjectInput input, [Service] IProjectService service)
         {
             try
             {
@@ -76,7 +77,7 @@ namespace Mioni_Api.GraphQL.Mutations
             }
         }
 
-        public async Task<UpdateProjectPayload> UpdateProject(UpdateProjectInput input, [Service] ProjectService service)
+        public async Task<UpdateProjectPayload> UpdateProject(UpdateProjectInput input, [Service] IProjectService service)
         {
             try
             {
