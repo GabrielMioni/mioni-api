@@ -1,12 +1,29 @@
 ﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
+using HeyRed.Mime;
 using Path = System.IO.Path;
 
 namespace Mioni_Api.Helper
 {
     public class ImageHelper
     {
+        public static bool IsValidImageMime(Stream stream, string[] allowedExtensions)
+        {
+            if (stream.CanSeek)
+                stream.Position = 0;
+
+            var mime = MimeGuesser.GuessMimeType(stream);
+            stream.Position = 0;
+
+            if (string.IsNullOrEmpty(mime))
+                return false;
+
+            var ext = MimeGuesser.GuessExtension(mime);
+
+            return ext != null && allowedExtensions.Contains(ext.ToLowerInvariant());
+        }
+
         public static async Task ResizeAndSaveAsync (
             Stream inputStream,
             string outputPath,
