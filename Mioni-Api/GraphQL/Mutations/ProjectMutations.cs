@@ -24,7 +24,7 @@ namespace Mioni_Api.GraphQL.Mutations
 
                 return new AddProjectPayload(addedProject);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new AddProjectPayload(null, new List<UserError>
                 {
@@ -46,7 +46,7 @@ namespace Mioni_Api.GraphQL.Mutations
                     new UserError(ex.Message, "PROJECT_NOT_FOUND")
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new DeleteProjectPayload(null, new List<UserError>{
                     new UserError("An unexpected error occurred while deleting the project.", "DELETE_FAILED")
@@ -68,7 +68,7 @@ namespace Mioni_Api.GraphQL.Mutations
                 Project addedProject = await service.CreateAsync(restoredProject);
                 return new RestoreProjectPayload(addedProject);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new RestoreProjectPayload(null, new List<UserError>
                 {
@@ -102,7 +102,7 @@ namespace Mioni_Api.GraphQL.Mutations
                     new UserError(ex.Message, "PROJECT_NOT_FOUND")
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new UpdateProjectPayload(null, new List<UserError>{
                     new UserError("An unexpected error occurred while updating the project.", "UPDATE_FAILED")
