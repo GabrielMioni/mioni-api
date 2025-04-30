@@ -8,7 +8,7 @@ namespace Mioni_Api.Helper
 {
     public class ImageHelper
     {
-        public static bool IsValidImageMime(Stream stream, string[] allowedExtensions)
+        public static string? GetExtensionFromMime(Stream stream)
         {
             if (stream.CanSeek)
                 stream.Position = 0;
@@ -16,10 +16,12 @@ namespace Mioni_Api.Helper
             var mime = MimeGuesser.GuessMimeType(stream);
             stream.Position = 0;
 
-            if (string.IsNullOrEmpty(mime))
-                return false;
+            return MimeGuesser.GuessExtension(mime);
+        }
 
-            var ext = MimeGuesser.GuessExtension(mime);
+        public static bool IsValidImageMime(Stream stream, string[] allowedExtensions)
+        {
+            var ext = GetExtensionFromMime(stream);
 
             return ext != null && allowedExtensions.Contains(ext.ToLowerInvariant());
         }
