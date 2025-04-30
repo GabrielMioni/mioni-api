@@ -8,6 +8,12 @@ namespace Mioni_Api.Helper
 {
     public class ImageHelper
     {
+        public static void DeleteImageIfExists(string path)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+        }
+
         public static string? GetExtensionFromMime(Stream stream)
         {
             if (stream.CanSeek)
