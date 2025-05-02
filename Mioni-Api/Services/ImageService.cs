@@ -54,7 +54,6 @@ namespace Mioni_Api.Services
                 ThumbnailUrl = $"{publicBase}/thumb/{fileName}",
                 MediumUrl = $"{publicBase}/medium/{fileName}",
                 LargeUrl = $"{publicBase}/large/{fileName}",
-
             };
         }
     }
