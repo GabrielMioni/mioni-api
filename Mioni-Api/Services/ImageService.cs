@@ -47,7 +47,7 @@ namespace Mioni_Api.Services
             stream.Position = 0;
             await ImageHelper.ResizeAndSaveAsync(stream, largePath, _settings.MaxWidth, _settings.MaxHeight);
 
-            var publicBase = $"/uploads/{subfolder}";
+            var publicBase = $"/uploads/{subfolder}".TrimEnd('/');
 
             return new ImageUploadResult
             {
