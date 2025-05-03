@@ -1,4 +1,6 @@
-﻿namespace Mioni_Api.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Mioni_Api.Domain.Entities
 {
     public class ProjectImage
     {
@@ -52,5 +54,14 @@
                 throw new ArgumentException("New file name is required.", nameof(newFileName));
             FileName = newFileName;
         }
+
+        [NotMapped]
+        public string Thumnailurl => $"/uploads/{Subfolder}/thumb/{FileName}";
+
+        [NotMapped]
+        public string MediumUrl => $"/uploads/{Subfolder}/medium/{FileName}";
+
+        [NotMapped]
+        public string LargeUrl => $"/uploads/{Subfolder}/large/{FileName}";
     }
 }
