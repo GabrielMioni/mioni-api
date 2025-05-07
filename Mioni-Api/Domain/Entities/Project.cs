@@ -7,5 +7,7 @@
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public List<ProjectImage>? ProjectImages { get; set; } = new();
     }
 }
