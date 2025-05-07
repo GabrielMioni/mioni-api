@@ -11,13 +11,23 @@ namespace Mioni_Api.Data
 
         public DbSet<Project> Projects => Set<Project>();
 
+        public DbSet<ProjectImage> ProjectImages => default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             var timeNow = new DateTime(2024, 4, 16, 0, 0, 0, DateTimeKind.Utc);
 
-            modelBuilder.Entity<Project>().HasData(
+            var projectBuilder = modelBuilder.Entity<Project>();
+
+            projectBuilder
+                .HasMany(p => p.ProjectImages)
+                .WithOne(i => i.Project)
+                .HasForeignKey(i => i.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            projectBuilder.HasData(
                 new Project
                 {
                     Id = 1,
