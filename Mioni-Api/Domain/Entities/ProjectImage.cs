@@ -56,7 +56,7 @@ namespace Mioni_Api.Domain.Entities
         }
 
         [NotMapped]
-        public string Thumnailurl => $"/uploads/{Subfolder}/thumb/{FileName}";
+        public string ThumbnailUrl => $"/uploads/{Subfolder}/thumb/{FileName}";
 
         [NotMapped]
         public string MediumUrl => $"/uploads/{Subfolder}/medium/{FileName}";
