@@ -15,6 +15,8 @@ namespace Mioni_Api.Domain.Entities
         public int ProjectId { get; private set; }
         public Project Project { get; private set; } = default!;
 
+        public int SortOrder { get; private set; } = 0;
+
         private ProjectImage() { }
 
         public static ProjectImage Create(
@@ -22,7 +24,8 @@ namespace Mioni_Api.Domain.Entities
             string subfolder,
             int projectId,
             string? altText = null,
-            string? caption = null)
+            string? caption = null,
+            int sortOrder = 0)
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 throw new ArgumentException("File name is required.", nameof(fileName));
@@ -36,7 +39,8 @@ namespace Mioni_Api.Domain.Entities
                 Subfolder = subfolder,
                 AltText = altText,
                 Caption = caption,
-                ProjectId = projectId
+                ProjectId = projectId,
+                SortOrder = sortOrder
             };
         }
 
