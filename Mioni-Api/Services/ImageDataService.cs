@@ -14,9 +14,11 @@ namespace Mioni_Api.Services
             _context = context;
         }
 
-        public Task<ProjectImage> CreateAsync(ProjectImage projectImage)
+        public async Task<ProjectImage> CreateAsync(ProjectImage projectImage)
         {
-            throw new NotImplementedException();
+            _context.ProjectImages.Add(projectImage);
+            await _context.SaveChangesAsync();
+            return projectImage;
         }
 
         public Task<ProjectImage> DeleteAndReturnImageAsync(int id)
@@ -32,13 +34,6 @@ namespace Mioni_Api.Services
         public Task<ProjectImage?> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<int> GetMaxSortOrderByProjectId(int id)
-        {
-            return await _context.ProjectImages
-                .Where(i => i.ProjectId == id)
-                .MaxAsync(i => (int?)i.SortOrder) ?? -1;
         }
 
         public Task<ProjectImage> UpdateImageAsync(int id, string? newTitle, string? newDescription, bool titleProvided, bool descriptionProvided)

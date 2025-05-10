@@ -6,7 +6,6 @@ namespace Mioni_Api.Services.Interfaces
     {
         IQueryable<Project> GetAll();
         Task<Project?> GetByIdAsync(int id);
-        Task<int> GetMaxSortOrderByProjectId(int id);
         Task<Project> CreateAsync(Project project);
         Task<Project> DeleteAndReturnProjectAsync(int id);
         Task<Project> UpdateProjectAsync(
