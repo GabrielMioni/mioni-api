@@ -1,4 +1,5 @@
-﻿using Mioni_Api.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Mioni_Api.Data;
 using Mioni_Api.Domain.Entities;
 using Mioni_Api.Services.Interfaces;
 using KeyNotFoundException = System.Collections.Generic.KeyNotFoundException;
@@ -18,6 +19,11 @@ namespace Mioni_Api.Services
 
         public async Task<Project?> GetByIdAsync(int id) =>
             await _context.Projects.FindAsync(id);
+
+        public async Task<int> GetMaxSortOrderByProjectId(int id) =>
+            await _context.ProjectImages
+                .Where(i => i.ProjectId == id)
+                .MaxAsync(i => (int?)i.SortOrder) ?? -1;
 
         public async Task<Project> CreateAsync(Project project)
         {
