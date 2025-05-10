@@ -24,7 +24,7 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString));
 
-builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IProjectDataService, ProjectDataService>();
 
 builder.Services
     .AddGraphQLServer()

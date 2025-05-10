@@ -16,7 +16,7 @@ namespace Mioni_Api.GraphQL.Queries
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public IQueryable<Project> GetProjects([Service] IProjectService service)
+        public IQueryable<Project> GetProjects([Service] IProjectDataService service)
         {
             return service.GetAll();
         }

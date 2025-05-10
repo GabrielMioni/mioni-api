@@ -6,11 +6,11 @@ using KeyNotFoundException = System.Collections.Generic.KeyNotFoundException;
 
 namespace Mioni_Api.Services
 {
-    public class ProjectService : IProjectService
+    public class ProjectDataService : IProjectDataService
     {
         private readonly AppDbContext _context;
 
-        public ProjectService(AppDbContext context)
+        public ProjectDataService(AppDbContext context)
         {
             _context = context;
         }
