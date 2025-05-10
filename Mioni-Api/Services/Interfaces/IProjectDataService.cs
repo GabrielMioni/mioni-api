@@ -2,7 +2,7 @@
 
 namespace Mioni_Api.Services.Interfaces
 {
-    public interface IProjectService
+    public interface IProjectDataService
     {
         IQueryable<Project> GetAll();
         Task<Project?> GetByIdAsync(int id);
