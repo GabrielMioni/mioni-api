@@ -7,11 +7,11 @@ using Path = System.IO.Path;
 
 namespace Mioni_Api.Services
 {
-    public class ImageService : IImageService
+    public class ImageUploadService : IImageUploadService
     {
         private readonly ImageSettings _settings;
 
-        public ImageService(IOptions<ImageSettings> settings) {
+        public ImageUploadService(IOptions<ImageSettings> settings) {
             _settings = settings.Value;
         }
 
@@ -47,10 +47,11 @@ namespace Mioni_Api.Services
             stream.Position = 0;
             await ImageHelper.ResizeAndSaveAsync(stream, largePath, _settings.MaxWidth, _settings.MaxHeight);
 
-            var publicBase = $"/uploads/{subfolder}".TrimEnd('/');
+            var publicBase = $"/{_settings.UploadRoot}/{subfolder}".TrimEnd('/');
 
             return new ImageUploadResult
             {
+                FileName = fileName,
                 ThumbnailUrl = $"{publicBase}/thumb/{fileName}",
                 MediumUrl = $"{publicBase}/medium/{fileName}",
                 LargeUrl = $"{publicBase}/large/{fileName}",

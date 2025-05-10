@@ -2,7 +2,7 @@
 
 namespace Mioni_Api.Services.Interfaces
 {
-    public interface IImageService
+    public interface IImageUploadService
     {
         Task<ImageUploadResult> UploadImageAsync(IFormFile file, string subfolder);
     }
