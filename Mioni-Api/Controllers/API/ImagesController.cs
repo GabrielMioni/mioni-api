@@ -7,14 +7,14 @@ namespace Mioni_Api.Controllers.API
 {
     public class ImagesController : Controller
     {
-        private readonly IImageUploadService _imageService;
-        private readonly IProjectService _projectService;
+        private readonly IImageUploadService _imageUploadService;
+        private readonly IProjectDataService _projectDataService;
         private readonly AppDbContext _context;
 
-        public ImagesController(IImageUploadService imageService, IProjectService projectService, AppDbContext context)
+        public ImagesController(IImageUploadService imageUploadService, IProjectDataService projectDataService, AppDbContext context)
         {
-            _imageService = imageService;
-            _projectService = projectService;
+            _imageUploadService = imageUploadService;
+            _projectDataService = projectDataService;
             _context = context;
         }
 
@@ -30,7 +30,7 @@ namespace Mioni_Api.Controllers.API
             try
             {
                 var subfolder = $"projects/{projectId}";
-                var result = await _imageService.UploadImageAsync(file, subfolder);
+                var result = await _imageUploadService.UploadImageAsync(file, subfolder);
 
                 if (result == null)
                     return BadRequest("Image upload failed.");
@@ -41,7 +41,7 @@ namespace Mioni_Api.Controllers.API
                     projectId,
                     altText,
                     caption,
-                    await _projectService.GetMaxSortOrderByProjectId(projectId) + 1
+                    await _projectDataService.GetMaxSortOrderByProjectId(projectId) + 1
                 );
                 await _context.SaveChangesAsync();
 
