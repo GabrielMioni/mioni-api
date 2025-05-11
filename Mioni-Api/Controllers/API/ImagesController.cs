@@ -8,14 +8,12 @@ namespace Mioni_Api.Controllers.API
     public class ImagesController : Controller
     {
         private readonly IImageUploadService _imageUploadService;
-        private readonly IProjectDataService _projectDataService;
-        private readonly AppDbContext _context;
+        private readonly IImageDataService _imageDataService;
 
-        public ImagesController(IImageUploadService imageUploadService, IProjectDataService projectDataService, AppDbContext context)
+        public ImagesController(IImageUploadService imageUploadService, IImageDataService imageDataService)
         {
             _imageUploadService = imageUploadService;
-            _projectDataService = projectDataService;
-            _context = context;
+            _imageDataService = imageDataService;
         }
 
         [HttpPost("upload")]
@@ -41,9 +39,9 @@ namespace Mioni_Api.Controllers.API
                     projectId,
                     altText,
                     caption,
-                    await _projectDataService.GetMaxSortOrderByProjectId(projectId) + 1
+                    await _imageDataService.GetMaxSortOrderByProjectId(projectId) + 1
                 );
-                await _context.SaveChangesAsync();
+                await _imageDataService.CreateAsync(entity);
 
                 return Ok(result);
             }
