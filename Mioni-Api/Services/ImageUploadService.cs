@@ -15,7 +15,7 @@ namespace Mioni_Api.Services
             _settings = settings.Value;
         }
 
-        public async Task<ImageUploadResult> UploadImageAsync(IFormFile file, string subfolder)
+        public async Task<string> UploadImageAsync(IFormFile file, string subfolder)
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentNullException(nameof(file));
@@ -47,15 +47,7 @@ namespace Mioni_Api.Services
             stream.Position = 0;
             await ImageHelper.ResizeAndSaveAsync(stream, largePath, _settings.MaxWidth, _settings.MaxHeight);
 
-            var publicBase = $"/{_settings.UploadRoot}/{subfolder}".TrimEnd('/');
-
-            return new ImageUploadResult
-            {
-                FileName = fileName,
-                ThumbnailUrl = $"{publicBase}/thumb/{fileName}",
-                MediumUrl = $"{publicBase}/medium/{fileName}",
-                LargeUrl = $"{publicBase}/large/{fileName}",
-            };
+            return fileName;
         }
     }
 }
