@@ -4,7 +4,9 @@ using Mioni_Api.Services.Interfaces;
 
 namespace Mioni_Api.Controllers.API
 {
-    public class ImagesController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ImagesController : ControllerBase
     {
         private readonly IImageUploadService _imageUploadService;
         private readonly IImageDataService _imageDataService;
