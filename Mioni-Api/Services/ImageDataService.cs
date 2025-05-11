@@ -36,6 +36,11 @@ namespace Mioni_Api.Services
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetMaxSortOrderByProjectId(int id) =>
+            await _context.ProjectImages
+                .Where(i => i.ProjectId == id)
+                .MaxAsync(i => (int?)i.SortOrder) ?? -1;
+
         public Task<ProjectImage> UpdateImageAsync(int id, string? newTitle, string? newDescription, bool titleProvided, bool descriptionProvided)
         {
             throw new NotImplementedException();
