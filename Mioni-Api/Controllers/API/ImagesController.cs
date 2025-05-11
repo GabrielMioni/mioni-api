@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mioni_Api.Domain.Entities;
+using Mioni_Api.Factories;
 using Mioni_Api.Services.Interfaces;
 
 namespace Mioni_Api.Controllers.API
@@ -29,13 +30,13 @@ namespace Mioni_Api.Controllers.API
             try
             {
                 var subfolder = $"projects/{projectId}";
-                var result = await _imageUploadService.UploadImageAsync(file, subfolder);
+                var fileName = await _imageUploadService.UploadImageAsync(file, subfolder);
 
-                if (result == null)
+                if (fileName == null)
                     return BadRequest("Image upload failed.");
 
                 var entity = ProjectImage.Create(
-                    result.FileName,
+                    fileName,
                     subfolder,
                     projectId,
                     altText,
@@ -44,7 +45,9 @@ namespace Mioni_Api.Controllers.API
                 );
                 await _imageDataService.CreateAsync(entity);
 
-                return Ok(result);
+                var dto = ProjectImageDtoFactory.Create(entity);
+
+                return Ok(dto);
             }
             catch (Exception ex)
             {
