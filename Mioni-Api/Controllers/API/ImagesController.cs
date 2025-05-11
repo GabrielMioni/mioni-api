@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mioni_Api.Data;
 using Mioni_Api.Domain.Entities;
 using Mioni_Api.Services.Interfaces;
 
