@@ -25,6 +25,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IProjectDataService, ProjectDataService>();
+builder.Services.AddScoped<IImageDataService, ImageDataService>();
 
 builder.Services
     .AddGraphQLServer()
