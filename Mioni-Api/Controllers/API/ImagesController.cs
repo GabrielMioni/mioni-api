@@ -47,12 +47,22 @@ namespace Mioni_Api.Controllers.API
 
                 var dto = ProjectImageDtoFactory.Create(entity);
 
-                return Ok(dto);
+                return CreatedAtAction(nameof(GetImageById), new { id = entity.Id }, dto);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetImageById(int id)
+        {
+            var image = await _imageDataService.GetByIdAsync(id);
+            if (image == null)
+                return NotFound();
+            var dto = ProjectImageDtoFactory.Create(image);
+            return Ok(dto);
         }
     }
 }
