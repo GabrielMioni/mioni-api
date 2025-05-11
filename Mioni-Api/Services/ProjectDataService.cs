@@ -20,11 +20,6 @@ namespace Mioni_Api.Services
         public async Task<Project?> GetByIdAsync(int id) =>
             await _context.Projects.FindAsync(id);
 
-        public async Task<int> GetMaxSortOrderByProjectId(int id) =>
-            await _context.ProjectImages
-                .Where(i => i.ProjectId == id)
-                .MaxAsync(i => (int?)i.SortOrder) ?? -1;
-
         public async Task<Project> CreateAsync(Project project)
         {
             _context.Projects.Add(project);
