@@ -1,4 +1,4 @@
-﻿namespace Mioni_Api.Data
+﻿namespace Mioni_Portfolio.Data
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;

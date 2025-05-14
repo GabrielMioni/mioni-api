@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using Mioni_Api.Domain.Entities;
+using Mioni_Portfolio.Domain.Entities;
 
-namespace Mioni_Api.Data
+namespace Mioni_Portfolio.Data
 {
     public class AppDbContext : DbContext
     {

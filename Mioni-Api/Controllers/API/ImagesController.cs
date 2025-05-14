@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mioni_Api.Domain.Entities;
-using Mioni_Api.Factories;
-using Mioni_Api.Services.Interfaces;
+using Mioni_Portfolio.Domain.Entities;
+using Mioni_Portfolio.Factories;
+using Mioni_Portfolio.Services.Interfaces;
 
-namespace Mioni_Api.Controllers.API
+namespace Mioni_Portfolio.Controllers.API
 {
     [ApiController]
     [Route("api/[controller]")]

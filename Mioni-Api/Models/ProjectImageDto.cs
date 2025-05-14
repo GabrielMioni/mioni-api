@@ -1,4 +1,4 @@
-﻿namespace Mioni_Api.Models
+﻿namespace Mioni_Portfolio.Models
 {
     public class ProjectImageDto
     {

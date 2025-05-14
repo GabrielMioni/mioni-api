@@ -1,7 +1,7 @@
-﻿using Mioni_Api.Domain.Entities;
-using Mioni_Api.Models;
+﻿using Mioni_Portfolio.Domain.Entities;
+using Mioni_Portfolio.Models;
 
-namespace Mioni_Api.Factories
+namespace Mioni_Portfolio.Factories
 {
     public class ProjectImageDtoFactory
     {

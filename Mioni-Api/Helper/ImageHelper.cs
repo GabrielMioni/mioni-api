@@ -4,7 +4,7 @@ using SixLabors.ImageSharp.Processing;
 using HeyRed.Mime;
 using Path = System.IO.Path;
 
-namespace Mioni_Api.Helper
+namespace Mioni_Portfolio.Helper
 {
     public class ImageHelper
     {

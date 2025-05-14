@@ -1,4 +1,4 @@
-﻿namespace Mioni_Api.GraphQL.Inputs
+﻿namespace Mioni_Portfolio.GraphQL.Inputs
 {
     public class RestoreProjectInput
     {

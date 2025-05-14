@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Mioni_Api.Domain.Entities
+namespace Mioni_Portfolio.Domain.Entities
 {
     public class ProjectImage
     {

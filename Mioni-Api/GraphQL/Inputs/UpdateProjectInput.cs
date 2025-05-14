@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using HotChocolate;
 
-namespace Mioni_Api.GraphQL.Inputs
+namespace Mioni_Portfolio.GraphQL.Inputs
 {
     public class UpdateProjectInput
     {

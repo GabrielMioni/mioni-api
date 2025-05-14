@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Mioni_Api.Migrations
+namespace Mioni_Portfolio.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

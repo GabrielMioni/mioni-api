@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Mioni_Api.Migrations
+namespace Mioni_Portfolio.Migrations
 {
     /// <inheritdoc />
     public partial class AddSortOrderToProjectImage : Migration

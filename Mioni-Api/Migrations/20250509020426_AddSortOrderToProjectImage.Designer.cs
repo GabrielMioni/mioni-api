@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mioni_Api.Data;
+using Mioni_Portfolio.Data;
 
 #nullable disable
 
-namespace Mioni_Api.Migrations
+namespace Mioni_Portfolio.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250509020426_AddSortOrderToProjectImage")]

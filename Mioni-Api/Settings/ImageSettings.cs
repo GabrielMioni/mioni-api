@@ -1,4 +1,4 @@
-﻿namespace Mioni_Api.Settings
+﻿namespace Mioni_Portfolio.Settings
 {
     public class ImageSettings
     {

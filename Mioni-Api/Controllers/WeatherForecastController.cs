@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mioni_Api.Controllers
+namespace Mioni_Portfolio.Controllers
 {
     [ApiController]
     [Route("[controller]")]
