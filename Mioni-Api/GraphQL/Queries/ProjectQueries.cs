@@ -1,8 +1,8 @@
-﻿using Mioni_Portfolio.Domain.Entities;
-using Mioni_Portfolio.Services;
-using Mioni_Portfolio.Services.Interfaces;
+﻿using Mioni.Api.Domain.Entities;
+using Mioni.Api.Services;
+using Mioni.Api.Services.Interfaces;
 
-namespace Mioni_Portfolio.GraphQL.Queries
+namespace Mioni.Api.GraphQL.Queries
 {
     [ExtendObjectType("Query")]
     public class ProjectQueries

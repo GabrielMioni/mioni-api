@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Mioni_Portfolio.Data;
-using Mioni_Portfolio.GraphQL.Mutations;
-using Mioni_Portfolio.GraphQL.Queries;
-using Mioni_Portfolio.Services;
-using Mioni_Portfolio.Services.Interfaces;
+using Mioni.Api.Data;
+using Mioni.Api.GraphQL.Mutations;
+using Mioni.Api.GraphQL.Queries;
+using Mioni.Api.Services;
+using Mioni.Api.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

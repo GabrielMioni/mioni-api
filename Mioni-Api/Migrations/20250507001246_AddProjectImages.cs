@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Mioni_Portfolio.Migrations
+namespace Mioni.Api.Migrations
 {
     /// <inheritdoc />
     public partial class AddProjectImages : Migration

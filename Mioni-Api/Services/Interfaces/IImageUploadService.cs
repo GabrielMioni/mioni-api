@@ -1,4 +1,4 @@
-﻿namespace Mioni_Portfolio.Services.Interfaces
+﻿namespace Mioni.Api.Services.Interfaces
 {
     public interface IImageUploadService
     {

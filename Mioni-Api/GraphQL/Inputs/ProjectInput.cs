@@ -1,4 +1,4 @@
-﻿namespace Mioni_Portfolio.GraphQL.Inputs
+﻿namespace Mioni.Api.GraphQL.Inputs
 {
     public class ProjectInput
     {

@@ -1,10 +1,10 @@
-﻿using Mioni_Portfolio.Domain.Entities;
-using Mioni_Portfolio.GraphQL.Inputs;
-using Mioni_Portfolio.GraphQL.Payloads;
-using Mioni_Portfolio.Services;
-using Mioni_Portfolio.Services.Interfaces;
+﻿using Mioni.Api.Domain.Entities;
+using Mioni.Api.GraphQL.Inputs;
+using Mioni.Api.GraphQL.Payloads;
+using Mioni.Api.Services;
+using Mioni.Api.Services.Interfaces;
 
-namespace Mioni_Portfolio.GraphQL.Mutations
+namespace Mioni.Api.GraphQL.Mutations
 {
     [ExtendObjectType("Mutation")]
     public class ProjectMutations

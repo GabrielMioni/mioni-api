@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mioni_Portfolio.Data;
-using Mioni_Portfolio.Domain.Entities;
-using Mioni_Portfolio.Services.Interfaces;
+using Mioni.Api.Data;
+using Mioni.Api.Domain.Entities;
+using Mioni.Api.Services.Interfaces;
 
-namespace Mioni_Portfolio.Services
+namespace Mioni.Api.Services
 {
     public class ImageDataService : IImageDataService
     {

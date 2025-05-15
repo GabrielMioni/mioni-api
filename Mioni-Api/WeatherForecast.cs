@@ -1,4 +1,4 @@
-namespace Mioni_Portfolio
+namespace Mioni.Api
 {
     public class WeatherForecast
     {

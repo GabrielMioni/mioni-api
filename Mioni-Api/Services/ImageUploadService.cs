@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
-using Mioni_Portfolio.Helper;
-using Mioni_Portfolio.Models;
-using Mioni_Portfolio.Services.Interfaces;
-using Mioni_Portfolio.Settings;
+using Mioni.Api.Helper;
+using Mioni.Api.Models;
+using Mioni.Api.Services.Interfaces;
+using Mioni.Api.Settings;
 using Path = System.IO.Path;
 
-namespace Mioni_Portfolio.Services
+namespace Mioni.Api.Services
 {
     public class ImageUploadService : IImageUploadService
     {

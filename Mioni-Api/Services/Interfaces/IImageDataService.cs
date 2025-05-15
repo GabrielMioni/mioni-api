@@ -1,6 +1,6 @@
-﻿using Mioni_Portfolio.Domain.Entities;
+﻿using Mioni.Api.Domain.Entities;
 
-namespace Mioni_Portfolio.Services.Interfaces
+namespace Mioni.Api.Services.Interfaces
 {
     public interface IImageDataService
     {
