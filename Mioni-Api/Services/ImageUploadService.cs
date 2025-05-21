@@ -21,15 +21,22 @@ namespace Mioni.Api.Services
                 throw new ArgumentNullException(nameof(file));
 
             if (file.Length > _settings.MaxFileSizeBytes)
-                throw new ArgumentException($"File must be smaller than {_settings.MaxFileSizeBytes} bytes");
+                throw new ArgumentException(
+                    $"File must be smaller than {_settings.MaxFileSizeBytes} bytes"
+                );
 
             using var stream = file.OpenReadStream();
 
-            if (!ImageHelper.IsValidImageMime(stream, _settings.AllowedExtensions))
-                throw new ArgumentException($"File type not allowed. Allowed types: {string.Join(", ", _settings.AllowedExtensions)}");
+            if (!ImageHelper.IsValidImage(stream, out var fileExtension))
+                throw new ArgumentException(
+                    $"Unable to determine file extension from uploaded content. Allowed types: {string.Join(", ", _settings.AllowedExtensions)}"
+                );
 
-            var fileExtension = ImageHelper.GetExtensionFromMime(stream)
-                ?? throw new ArgumentException("Unable to determine file extension from upload content.");
+            if (!_settings.AllowedExtensions
+                .Any(x => x.Equals(fileExtension, StringComparison.OrdinalIgnoreCase)))
+                throw new ArgumentException(
+                    $"File extension {fileExtension} is not allowed. Allowed types: {string.Join(", ", _settings.AllowedExtensions)}"
+                );
 
             var fileName = $"{Guid.NewGuid()}{fileExtension}";
             var baseDir = Path.Combine(Directory.GetCurrentDirectory(), _settings.UploadRoot, subfolder);

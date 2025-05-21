@@ -14,15 +14,37 @@ namespace Mioni.Api.Helper
                 File.Delete(path);
         }
 
-        public static string? GetExtensionFromMime(Stream stream)
+        public static bool IsValidImage(Stream stream, out string? extension)
         {
-            if (stream.CanSeek)
+            extension = null;
+
+            try
+            {
+                if (stream.CanSeek)
+                    stream.Position = 0;
+
+                using var image = Image.Load(stream);
                 stream.Position = 0;
 
-            var mime = MimeGuesser.GuessMimeType(stream);
-            stream.Position = 0;
+                var mime = MimeGuesser.GuessMimeType(stream);
+                stream.Position = 0;
 
-            return MimeGuesser.GuessExtension(mime);
+                extension = mime switch
+                {
+                    "image/jpeg" => ".jpg",
+                    "image/png" => ".png",
+                    "image/gif" => ".gif",
+                    "image/webp" => ".webp",
+                    _ => null
+                };
+
+                return extension != null;
+            }
+            catch
+            {
+                extension = null;
+                return false;
+            }
         }
 
         public static bool IsValidImageMime(Stream stream, string[] allowedExtensions)
