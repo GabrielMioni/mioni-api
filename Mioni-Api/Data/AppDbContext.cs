@@ -9,9 +9,8 @@ namespace Mioni.Api.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
-        public DbSet<Project> Projects => Set<Project>();
-
-        public DbSet<ProjectImage> ProjectImages => default!;
+        public DbSet<ProjectImage> ProjectImages { get; set; } = default!;
+        public DbSet<Project> Projects { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
