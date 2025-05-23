@@ -47,13 +47,6 @@ namespace Mioni.Api.Helper
             }
         }
 
-        public static bool IsValidImageMime(Stream stream, string[] allowedExtensions)
-        {
-            var ext = GetExtensionFromMime(stream);
-
-            return ext != null && allowedExtensions.Contains(ext.ToLowerInvariant());
-        }
-
         public static async Task ResizeAndSaveAsync (
             Stream inputStream,
             string outputPath,
