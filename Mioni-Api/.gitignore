@@ -1,0 +1,13 @@
+# Ignore compiled build output folders
+bin/
+obj/
+
+# Ignore published output (e.g., results of 'dotnet publish')
+publish/
+
+# Ignore user-uploaded and generated static files in wwwroot
+wwwroot/uploads/
+wwwroot/generated/
+
+# Ignore local ASP.NET secrets file (do not store secrets in Git)
+secrets.json
