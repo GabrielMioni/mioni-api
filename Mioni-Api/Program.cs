@@ -26,7 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IProjectDataService, ProjectDataService>();
 builder.Services.AddScoped<IImageDataService, ImageDataService>();
-builder.Services.AddScoped<IImageUploadService, ImageUploadService>();
+builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
 
 builder.Services
     .AddGraphQLServer()

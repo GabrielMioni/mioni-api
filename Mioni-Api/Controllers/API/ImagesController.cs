@@ -9,10 +9,10 @@ namespace Mioni.Api.Controllers.API
     [Route("api/[controller]")]
     public class ImagesController : ControllerBase
     {
-        private readonly IImageUploadService _imageUploadService;
+        private readonly IImageStorageService _imageUploadService;
         private readonly IImageDataService _imageDataService;
 
-        public ImagesController(IImageUploadService imageUploadService, IImageDataService imageDataService)
+        public ImagesController(IImageStorageService imageUploadService, IImageDataService imageDataService)
         {
             _imageUploadService = imageUploadService;
             _imageDataService = imageDataService;

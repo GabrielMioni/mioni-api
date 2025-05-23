@@ -7,11 +7,11 @@ using Path = System.IO.Path;
 
 namespace Mioni.Api.Services
 {
-    public class ImageUploadService : IImageUploadService
+    public class ImageStorageService : IImageStorageService
     {
         private readonly ImageSettings _settings;
 
-        public ImageUploadService(IOptions<ImageSettings> settings) {
+        public ImageStorageService(IOptions<ImageSettings> settings) {
             _settings = settings.Value;
         }
 
