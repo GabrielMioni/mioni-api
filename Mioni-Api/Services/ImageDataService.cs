@@ -37,10 +37,7 @@ namespace Mioni.Api.Services
             return projectImage;
         }
 
-        public IQueryable<ProjectImage> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<ProjectImage> GetAll() => _context.ProjectImages;
 
         public Task<ProjectImage?> GetByIdAsync(int id)
         {
