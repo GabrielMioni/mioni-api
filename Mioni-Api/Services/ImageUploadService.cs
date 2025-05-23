@@ -39,7 +39,9 @@ namespace Mioni.Api.Services
                 );
 
             var fileName = $"{Guid.NewGuid()}{fileExtension}";
-            var baseDir = Path.Combine(Directory.GetCurrentDirectory(), _settings.UploadRoot, subfolder);
+
+            var wwwRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var baseDir = Path.Combine(wwwRoot, _settings.UploadRoot, subfolder);
 
             var thumbPath = Path.Combine(baseDir, "thumb", fileName);
             var mediumPath = Path.Combine(baseDir, "medium", fileName);
