@@ -2,6 +2,7 @@
 using Mioni.Api.Data;
 using Mioni.Api.Domain.Entities;
 using Mioni.Api.Services.Interfaces;
+using KeyNotFoundException = System.Collections.Generic.KeyNotFoundException;
 
 namespace Mioni.Api.Services
 {
@@ -21,9 +22,19 @@ namespace Mioni.Api.Services
             return projectImage;
         }
 
-        public Task<ProjectImage> DeleteAndReturnImageAsync(int id)
+        public async Task<ProjectImage> DeleteAndReturnImageAsync(int id)
         {
-            throw new NotImplementedException();
+            var projectImage = await _context.ProjectImages.FindAsync(id);
+
+            if (projectImage == null)
+            {
+                throw new KeyNotFoundException($"ProjectImage with ID {id} not found");
+            }
+
+            _context.ProjectImages.Remove(projectImage);
+            await _context.SaveChangesAsync();
+
+            return projectImage;
         }
 
         public IQueryable<ProjectImage> GetAll()
