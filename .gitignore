@@ -23,6 +23,7 @@ secrets.json
 ## Ignore publish output
 publish/
 wwwroot/generated/
+wwwroot/uploads/
 
 ## Ignore VS Code settings if you use it alongside
 .vscode/
