@@ -15,6 +15,23 @@ namespace Mioni.Api.Services
             _settings = settings.Value;
         }
 
+        public async Task<bool> DeleteImageAsync(int projectId)
+        {
+            var subfolder = $"projects/{projectId}";
+            var wwwRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var baseDir = Path.Combine(wwwRoot, _settings.UploadRoot, subfolder);
+
+            return await Task.Run(() =>
+            {
+                if (Directory.Exists(baseDir))
+                {
+                    Directory.Delete(baseDir, true);
+                    return true;
+                }
+                return false;
+            });          
+        }
+
         public async Task<string> UploadImageAsync(IFormFile file, string subfolder)
         {
             if (file == null || file.Length == 0)
