@@ -24,9 +24,6 @@ namespace Mioni.Api.Domain.Entities
             string? caption = null,
             int sortOrder = 0)
         {
-            if (string.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentException("File name is required.", nameof(fileName));
-
             return new ProjectImage
             {
                 FileName = fileName,
