@@ -12,7 +12,6 @@ namespace Mioni.Api.Factories
                 Id = entity.Id,
                 ProjectId = entity.ProjectId,
                 FileName = entity.FileName,
-                Subfolder = entity.Subfolder,
                 SortOrder = entity.SortOrder,
                 AltText = entity.AltText,
                 Caption = entity.Caption,

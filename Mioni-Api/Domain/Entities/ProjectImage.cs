@@ -7,8 +7,6 @@ namespace Mioni.Api.Domain.Entities
         public int Id { get; set; }
 
         public string FileName { get; private set; } = null!;
-        public string Subfolder { get; private set; } = null!;
-
         public string? AltText { get; private set; }
         public string? Caption { get; private set; }
 
@@ -21,7 +19,6 @@ namespace Mioni.Api.Domain.Entities
 
         public static ProjectImage Create(
             string fileName,
-            string subfolder,
             int projectId,
             string? altText = null,
             string? caption = null,
@@ -29,14 +26,10 @@ namespace Mioni.Api.Domain.Entities
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 throw new ArgumentException("File name is required.", nameof(fileName));
-            
-            if (string.IsNullOrWhiteSpace(subfolder))
-                throw new ArgumentException("Subfolder is required.", nameof(subfolder));
 
             return new ProjectImage
             {
                 FileName = fileName,
-                Subfolder = subfolder,
                 AltText = altText,
                 Caption = caption,
                 ProjectId = projectId,
@@ -59,13 +52,14 @@ namespace Mioni.Api.Domain.Entities
             FileName = newFileName;
         }
 
-        [NotMapped]
-        public string ThumbnailUrl => $"/uploads/{Subfolder}/thumb/{FileName}";
 
         [NotMapped]
-        public string MediumUrl => $"/uploads/{Subfolder}/medium/{FileName}";
+        public string LargeUrl => $"/uploads/projects/{ProjectId}/{Id}/large/{FileName}";
 
         [NotMapped]
-        public string LargeUrl => $"/uploads/{Subfolder}/large/{FileName}";
+        public string MediumUrl => $"/uploads/projects/{ProjectId}/{Id}/medium/{FileName}";
+
+        [NotMapped]
+        public string ThumbnailUrl => $"/uploads/projects/{ProjectId}/{Id}/thumb/{FileName}";
     }
 }

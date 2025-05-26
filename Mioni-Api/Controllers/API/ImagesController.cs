@@ -37,7 +37,6 @@ namespace Mioni.Api.Controllers.API
 
                 var entity = ProjectImage.Create(
                     fileName,
-                    subfolder,
                     projectId,
                     altText,
                     caption,
