@@ -54,9 +54,35 @@ namespace Mioni.Api.Services
             return sortOrders.Any() ? sortOrders.Max() : -1;
         }
 
-        public Task<ProjectImage> UpdateImageAsync(int id, string? newTitle, string? newDescription, bool titleProvided, bool descriptionProvided)
+        public async Task<ProjectImage> UpdateImageAsync(
+            int id,
+            string? newFileName,
+            string? newAltText,
+            string? newCaption,
+            bool fileNameProvided = false,
+            bool altTextProvided = false,
+            bool captionProvided = false)
         {
-            throw new NotImplementedException();
+            var projectImage = await _context.ProjectImages.FindAsync(id);
+            if (projectImage == null)
+            {
+                throw new KeyNotFoundException($"ProjectImage with ID {id} not found");
+            }
+            if (fileNameProvided)
+            {
+                projectImage.RenameFile(newFileName ?? throw new ArgumentNullException(nameof(newFileName)));
+            }
+            if (altTextProvided)
+            {
+                projectImage.UpdateAltText(newAltText ?? "");
+            }
+            if (captionProvided)
+            {
+                projectImage.UpdateCaption(newCaption ?? "");
+            }
+
+            await _context.SaveChangesAsync();
+            return projectImage;
         }
     }
 }
