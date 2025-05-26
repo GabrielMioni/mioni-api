@@ -29,14 +29,8 @@ namespace Mioni.Api.Controllers.API
                 return BadRequest("No file uploaded.");
             try
             {
-                var subfolder = $"projects/{projectId}";
-                var fileName = await _imageUploadService.UploadImageAsync(file, subfolder);
-
-                if (fileName == null)
-                    return BadRequest("Image upload failed.");
-
                 var entity = ProjectImage.Create(
-                    fileName,
+                    fileName: "",
                     projectId,
                     altText,
                     caption,
@@ -44,7 +38,16 @@ namespace Mioni.Api.Controllers.API
                 );
                 await _imageDataService.CreateAsync(entity);
 
-                var dto = ProjectImageDtoFactory.Create(entity);
+                var subfolder = $"projects/{projectId}/{entity.Id}";
+                var fileName = await _imageUploadService.UploadImageAsync(file, subfolder);
+
+                if (fileName == null)
+                    return BadRequest("Image upload failed.");
+
+                var projectImage = await _imageDataService
+                    .UpdateImageAsync(entity.Id, fileName, null, null, true);
+
+                var dto = ProjectImageDtoFactory.Create(projectImage);
 
                 return CreatedAtAction(nameof(GetImageById), new { id = entity.Id }, dto);
             }
