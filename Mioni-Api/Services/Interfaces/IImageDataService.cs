@@ -11,9 +11,11 @@ namespace Mioni.Api.Services.Interfaces
         Task<ProjectImage> DeleteAndReturnImageAsync(int id);
         Task<ProjectImage> UpdateImageAsync(
             int id,
-            string? newTitle,
-            string? newDescription,
-            bool titleProvided,
-            bool descriptionProvided);
+            string? newFileName,
+            string? newAltText,
+            string? newCaption,
+            bool fileNameProvided = false,
+            bool altTextProvided = false,
+            bool captionProvided = false);
     }
 }
